@@ -9,7 +9,7 @@ const {
     createNewReaction,
     deleteReactionById,
 
-} = requrire ('../../controllers/thoughtControllers.js')
+} = require ('../../controllers/thoughtControllers.js')
 
 // /api/thoughts
 router.route('/').get(getThoughts).post(createNewThought);

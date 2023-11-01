@@ -12,7 +12,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique: true,
-            match: [/^(\w\.-+)@([\w\.-]+)\.([\w]{2,})$/],
+            match: [/^[\w\.-]+@([\w\.-]+)\.([\w]{2,})$/],
         },
         thoughts: [
             {

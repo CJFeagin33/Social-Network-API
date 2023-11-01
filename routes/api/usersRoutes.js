@@ -6,17 +6,25 @@ const {
     getUserById,
     updateUserById,
     deleteUserById,
-} = requrire ('../../controllers/userControllers.js')
+    createNewFriend,
+    deleteNewFriend,
+} = require ('../../controllers/userControllers.js')
 
 // /api/users
 router.route('/').get(getUsers).post(createNewUser);
 
-// api/user/:_id
+// /api/users/:userId
 router
     .route('/:userId')
     .get(getUserById)
     .put(updateUserById)
     .delete(deleteUserById)
+
+// /api/users/:userId/friends/:friendId
+router
+    .route('/:userId/friends/:friendId')
+    .post(createNewFriend)
+    .delete(deleteNewFriend)
 
 module.exports = router; 
 
