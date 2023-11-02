@@ -52,9 +52,14 @@ const deleteThoughtById = async (req, res) => {
     try {
         const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
 
-            if (!thought) {
+        if (!thought) {
                 return res.status(404).json({ message: 'No such thought exists' })
             }
+
+        const user = await User.findOneAndUpdate(
+            {thoughts: req.params.thoughtId},
+            { $pull: { thoughts: req.params.thoughtId } },
+            { runValidators: true, new: true })
 
             res.json({ message: 'Thought deleted' });
         }
@@ -86,7 +91,7 @@ const deleteReactionById = async (req, res) => {
     try {
         const reaction = await Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $pull: { reactions: { reactionId: req.body.reactionId } } },
+            { $pull: { reactions: { reactionId: req.params.reactionId } } },
             { runValidators: true, new: true }
         )
 
